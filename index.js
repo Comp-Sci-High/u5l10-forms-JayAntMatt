@@ -27,9 +27,15 @@ app.get("/", async (req, res) => {
 });
 
 // Write a POST route that creates a new book document
-
-
-
+app.post("/new/book", async (req,res) =>{
+    const newBook = await new Book({
+        title: req.body.title,
+        author: req.body.author,
+        published: req.body.published
+    }).save()
+    
+    res.json(newBook)
+})
 
 async function startServer() {
     await mongoose.connect("mongodb+srv://SE12:CSH2026@cluster0.ytvmkmf.mongodb.net/?appName=Cluster0")
